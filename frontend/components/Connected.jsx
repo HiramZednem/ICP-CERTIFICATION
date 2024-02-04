@@ -27,11 +27,10 @@ const TodoList = () => {
     }
   };
 
-  // const toggleCompleted = (index) => {
-  //   const updatedTasks = [...tasks];
-  //   updatedTasks[index].completed = !updatedTasks[index].completed;
-  //   setTasks(updatedTasks);
-  // };
+  const toggleCompleted = async (index) => {
+    await toDo.setTask( index );
+    await refreshTasks();
+  };
 
   // const removeTask = (index) => {
   //   const updatedTasks = [...tasks];
