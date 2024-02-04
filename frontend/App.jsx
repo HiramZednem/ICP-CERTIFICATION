@@ -10,28 +10,7 @@ import "@connect2ic/core/style.css"
 import * as toDo from "../src/declarations/toDo"
 
 import NotConnected from "./components/NotConnected";
-import TodoList from "./components/Connected";
-
-
-
-function App() {
-  
-  const {principal} = useConnect();
-
-  return (
-    <div className="min-h-screen">
-      <header className="relative flex justify-start items-center p-4 border-b border-gray-600">
-        <img src={logo} width="80" alt="logo" />
-        <div className="absolute top-2 right-2">
-          <ConnectButton />
-        </div>
-      </header>
-      <ConnectDialog />
-      
-      {principal ? <TodoList/> : <NotConnected/>}
-    </div>
-  )
-}
+import TodoList from "./components/TodoList";
 
 const client = createClient({
   canisters: {
@@ -48,6 +27,26 @@ const client = createClient({
     dev: true,
   },
 })
+
+function App() {
+  
+  const {principal} = useConnect();
+
+  return (
+    <div className="min-h-screen">
+      <header className="relative flex justify-start items-center p-4 border-b border-gray-600">
+        <img src={logo} width="80" alt="logo" />
+        <div className="absolute top-2 right-2">
+          <ConnectButton />
+        </div>
+      </header>
+      <ConnectDialog />
+
+      {principal ? <TodoList/> : <NotConnected/>}
+    </div>
+  )
+}
+
 
 export default () => (
   <Connect2ICProvider client={client}>

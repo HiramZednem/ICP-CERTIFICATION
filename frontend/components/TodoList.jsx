@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useCanister } from "@connect2ic/react";
 
-const Connected = () => {
+const TodoList = () => {
   const [toDo] = useCanister("toDo");
 
   const [tasks, setTasks] = useState([]);
@@ -96,4 +96,4 @@ const Connected = () => {
   );
 };
 
-export default Connected;
+export default TodoList;
