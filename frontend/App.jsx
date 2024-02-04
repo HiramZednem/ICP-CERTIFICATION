@@ -8,7 +8,9 @@ import "@connect2ic/core/style.css"
 
 //Import canister definitions like this:
 import * as social from "../src/declarations/social"
+import * as toDo from "../src/declarations/toDo"
 import { IcpSocial } from "./components/Social"
+import { ToDo } from "./components/ToDo"
 
 function App() {
 
@@ -21,7 +23,8 @@ function App() {
         </div>
       </header>
       <ConnectDialog />
-      <IcpSocial />
+      <ToDo />
+      {/* <IcpSocial /> */}
     </div>
   )
 }
@@ -29,6 +32,7 @@ function App() {
 const client = createClient({
   canisters: {
     social,
+    toDo,
   },
   providers: [
     new InternetIdentity({ providerUrl: "http://127.0.0.1:8000/?canisterId=be2us-64aaa-aaaaa-qaabq-cai" })
