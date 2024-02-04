@@ -6,21 +6,25 @@ const TodoList = () => {
 
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState('');
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     refreshTasks(); 
   }, []);
 
   const refreshTasks = async () => {
+    setLoading(true);
     const result = await toDo.getTasks();
     const objectData = Object.fromEntries(result);
     console.log(objectData)
     setTasks(objectData);
+    setLoading(false)
     
 }
 
   const addTask = async () => {
     if (newTask.trim() !== '') {
+      setLoading(true);
       await toDo.createTask( newTask );
       await refreshTasks();
       setNewTask('');
@@ -28,6 +32,7 @@ const TodoList = () => {
   };
 
   const toggleCompleted = async (index) => {
+    setLoading(true);
     await toDo.setTask( index );
     await refreshTasks();
   };
@@ -57,6 +62,12 @@ const TodoList = () => {
           Agregar
         </button>
       </div>
+
+      {loading && (
+        <p className="mx-2 text-center bg-yellow-300 py-2 rounded-md mb-4">
+          Cargando...
+        </p>
+      )}
 
       <ul>
       {Object.entries(tasks).map(([key, task]) => (
