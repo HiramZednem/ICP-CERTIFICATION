@@ -67,4 +67,18 @@ actor {
 
 	};
 
+    public func deleteTask ( id: Text ) : async Bool {
+		let task : ?Task = taskList.get(id);
+		switch (task) {
+			case (null) {
+				return false;
+			};
+			case (_) {
+				ignore taskList.remove(id);
+				Debug.print("Delete task with ID: " # id);
+				return true;
+			};
+		};
+	};
+
 }

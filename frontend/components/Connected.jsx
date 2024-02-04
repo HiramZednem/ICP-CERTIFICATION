@@ -16,7 +16,6 @@ const TodoList = () => {
     setLoading(true);
     const result = await toDo.getTasks();
     const objectData = Object.fromEntries(result);
-    console.log(objectData)
     setTasks(objectData);
     setLoading(false)
     
@@ -37,11 +36,11 @@ const TodoList = () => {
     await refreshTasks();
   };
 
-  // const removeTask = (index) => {
-  //   const updatedTasks = [...tasks];
-  //   updatedTasks.splice(index, 1);
-  //   setTasks(updatedTasks);
-  // };
+  const removeTask = async (index) => {
+    setLoading(true);
+    await toDo.deleteTask( index );
+    await refreshTasks();
+  };
 
   return (
     <div className="max-w-md mx-auto mt-8">
