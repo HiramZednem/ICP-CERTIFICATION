@@ -3,15 +3,20 @@ import logo from "./assets/dfinity.svg"
 
 import { createClient } from "@connect2ic/core"
 import { InternetIdentity } from "@connect2ic/core/providers/internet-identity"
-import { ConnectButton, ConnectDialog, Connect2ICProvider } from "@connect2ic/react"
+import { ConnectButton, ConnectDialog, Connect2ICProvider, useConnect } from "@connect2ic/react"
 import "@connect2ic/core/style.css"
 
 //Import canister definitions like this:
 import * as toDo from "../src/declarations/toDo"
-import { ToDo } from "./components/ToDo"
+
+import NotConnected from "./components/NotConnected";
+import TodoList from "./components/Connected";
+
 
 
 function App() {
+  
+  const {principal} = useConnect();
 
   return (
     <div className="min-h-screen">
@@ -22,7 +27,8 @@ function App() {
         </div>
       </header>
       <ConnectDialog />
-      <ToDo/>
+      
+      {principal ? <TodoList/> : <NotConnected/>}
     </div>
   )
 }
