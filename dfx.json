@@ -1,15 +1,7 @@
 {
   "canisters": {
-    "social": {
-      "main": "canisters/social/main.mo",
-      "type": "motoko"
-    },
-    "crud": {
-      "main": "canisters/crud/main.mo",
-      "type": "motoko"
-    },
     "toDo": {
-      "main": "canisters/toDo/toDo.mo",
+      "main": "canisters/toDo.mo",
       "type": "motoko"
     },
     "internet_identity": {
@@ -24,8 +16,7 @@
     },
     "assets": {
       "dependencies": [
-        "internet_identity",
-        "social"
+        "internet_identity" 
       ],
       "frontend": {
         "entrypoint": "dist/index.html"
